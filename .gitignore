@@ -1,0 +1,5 @@
+.env
+node_modules
+src/utils/courier.js
+src/models/token.model.js
+src/models/lectures.model.js
