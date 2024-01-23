@@ -9,7 +9,7 @@ const passwordValidation = require("../middlewares/passwordValidaotr.middleware"
 
 
 userRouter.post("/register", registerBodyValidation, userControllers.registerUser)
-userRouter.post("/login", loginBodyRegistration, userControllers.loginUser)
+userRouter.post("/login", userControllers.loginUser)
 userRouter.get("/logout", auth, userControllers.logOut)
 userRouter.post("/forgot-password", userControllers.forgotPassword)
 userRouter.post("/reset-password/:resetToken", passwordValidation, userControllers.resetPassword)

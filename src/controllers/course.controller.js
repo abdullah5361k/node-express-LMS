@@ -7,13 +7,13 @@ const fs = require("fs");
 exports.createCourse = async (req, res, next) => {
     try {
         // Get data from request body
-        let { title, description, category, price } = req.body;
+        let { title, description, category, price, createdBy } = req.body;
         // If any of required field not given
-        if (!title || !description || !category || !req.file) {
+        if (!title || !description || !category || !req.file || !createdBy) {
             return next(new AppError(400, "All fields are mandatory"))
         }
 
-        const course = new Course({ title, description, category, price, });
+        const course = new Course({ title, description, category, price, createdBy });
         // Store Image on cloud
         const result = await storeImageOnCloud(req, next);
         if (!result) {

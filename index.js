@@ -18,7 +18,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors())
+app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 app.use(cookieParser())
 
 // Configure Cloudinary with your credentials

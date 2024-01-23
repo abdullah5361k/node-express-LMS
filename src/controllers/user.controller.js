@@ -68,30 +68,30 @@ exports.loginUser = async (req, res, next) => {
     try {
         const { email, password } = req.body
         // Email exists in DB
-        const userExists = await isEmailExistsInDb(email, next)
+        const user = await isEmailExistsInDb(email, next)
         // If email not exists in DB than return error
-        if (!userExists) {
+        if (!user) {
             return next(new AppError(400, `User with ${email} not registers, Please register yourself first`))
         }
 
         // Compare password
-        const matchPassword = await bcrypt.compare(password, userExists.password)
+        const matchPassword = await bcrypt.compare(password, user.password)
 
         if (!matchPassword) {
             return next(new AppError(400, "Please provide valid password"))
         }
 
         // Generate JWT token
-        const token = await userExists.generateJwtToken()
+        const token = await user.generateJwtToken()
         // Set token in cookies
         res.cookie("token", token, httpOptions)
         // delete password
-        userExists.password = undefined
+        user.password = undefined
         //  Send success responses
         return res.status(200).json({
             success: true,
             message: "User login successfully",
-            userExists
+            user
         })
 
 

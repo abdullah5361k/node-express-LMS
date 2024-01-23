@@ -9,7 +9,7 @@ const courseSchema = new Schema({
     },
     description: {
         type: String,
-        required: [true, "Category is required"],
+        required: [true, "Description is required"],
         trim: true
     },
     category: {
@@ -20,6 +20,9 @@ const courseSchema = new Schema({
     price: {
         type: String,
         required: [true, "Price is required"]
+    },
+    createdBy: {
+        type: String
     },
     thumbnail: {
         public_id: {
